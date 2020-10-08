@@ -1,25 +1,11 @@
-/*
- * Ардуино получает сигнал на пин с пишки. Всегда идет сигнал 1,
- * Поэтому я его инвертирую, и с пишки отправляю сигнал 0, чтобы
- * ардуино получило 0, инвертировала и запустила светодиод, иначе вечное
- * мигание светодиода. Это связано с тем, что есть помехи, которые
- * конвертируются в постоянный сигнал 1, и только при подключении к земле
- * срабатывает единичное действие.
- */
-
-
 #define ledPin 13
-#define inPin 2
-#define outPin 3
+#define openPin 2
+#define closePin 3
 #define X_DIR 5
 #define X_STP 6
 
-#include <SoftwareSerial.h>
-
-SoftwareSerial Serial_2(2, 3); // RX, TX
-
-
-int val = 0;
+int open = 0;
+int close = 0;
 int delayTime = 1000;
 int stps = 1000;
  
@@ -27,10 +13,10 @@ void setup()
 {
   Serial.begin(9600);
   pinMode(ledPin, OUTPUT);
-  pinMode(outPin, OUTPUT);
+  pinMode(openPin, INPUT_PULLUP);
   pinMode(X_DIR, OUTPUT); 
   pinMode(X_STP, OUTPUT);
-  pinMode(inPin, INPUT_PULLUP);
+  pinMode(closePin, INPUT_PULLUP);
   Serial.println("Start");
 }
 
@@ -38,19 +24,32 @@ bool flag = 0;
 
 void loop()
 {
-  val = digitalRead(inPin);
-  if(val){
-    digitalWrite(ledPin, val);
+  open = digitalRead(openPin);
+  if(open){
+    digitalWrite(ledPin, 0);
     /*digitalWrite(X_DIR, LOW);
     step(X_STP, stps);*/
   }else{
-    digitalWrite(ledPin, val);
-    Serial.println(val);
+    digitalWrite(ledPin, 1);
+    Serial.println("Open");
     delay(5000);
     /*digitalWrite(X_DIR, HIGH);
     step(X_STP, stps);*/
     //ОТКРЫТЬ КРЫШУ
   }
+ close = digitalRead(closePin);
+ if(close){
+   digitalWrite(ledPin, 0);
+   /*digitalWrite(X_DIR, LOW);
+   step(X_STP, stps);*/
+  }else{
+   digitalWrite(ledPin, 1);
+   Serial.println("Open");
+   delay(5000);
+   /*digitalWrite(X_DIR, HIGH);
+   step(X_STP, stps);*/
+   // ЗАКРЫТЬ КРЫШУ
+ }
   
 }
 
