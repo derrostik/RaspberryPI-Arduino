@@ -9,8 +9,8 @@
 
 
 #define ledPin 13
-#define inPin 2
-#define outPin 3
+#define inPin 7
+#define outPin 8
 #define X_DIR 5
 #define X_STP 6
 
