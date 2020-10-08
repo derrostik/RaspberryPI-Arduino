@@ -31,7 +31,7 @@ void loop()
     step(X_STP, stps);*/
   }else{
     digitalWrite(ledPin, 1);
-    Serial.println("Open");
+    Serial.println("Open roof");
     delay(5000);
     /*digitalWrite(X_DIR, HIGH);
     step(X_STP, stps);*/
@@ -44,7 +44,7 @@ void loop()
    step(X_STP, stps);*/
   }else{
    digitalWrite(ledPin, 1);
-   Serial.println("Open");
+   Serial.println("Close roof");
    delay(5000);
    /*digitalWrite(X_DIR, HIGH);
    step(X_STP, stps);*/
