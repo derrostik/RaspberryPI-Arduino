@@ -1,13 +1,14 @@
 from time import sleep
 import RPi.GPIO as gpio
 
+pin = 12
 gpio.setmode(gpio.BOARD)
-gpio.setup(12, gpio.OUT)
+gpio.setup(pin, gpio.OUT)
 flag = 0
 
 def open_roof():
-    gpio.output(12, flag)
+    gpio.output(pin, flag)
     sleep(1)
-    gpio.output(12, ~flag)
+    gpio.output(pin, ~flag)
     
     gpio.cleanup()
