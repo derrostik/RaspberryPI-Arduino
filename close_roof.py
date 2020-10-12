@@ -6,7 +6,7 @@ gpio.setmode(gpio.BOARD)
 gpio.setup(pin, gpio.OUT)
 flag = 0
 
-def open_roof():
+def close_roof():
     gpio.output(pin, flag)
     sleep(1)
     gpio.output(pin, ~flag)
