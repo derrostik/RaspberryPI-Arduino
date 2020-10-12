@@ -4,7 +4,8 @@ import RPi.GPIO as gpio
 pin = 12
 gpio.setmode(gpio.BOARD)
 gpio.setup(pin, gpio.OUT)
-flag = 0
+flag = 1
+gpio.output(pin, ~flag)
 
 def open_roof():
     gpio.output(pin, flag)
