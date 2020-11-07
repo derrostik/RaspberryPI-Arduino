@@ -26,29 +26,23 @@ void loop()
 {
   open = digitalRead(openPin);
   if(open){
-    digitalWrite(ledPin, 0);
+    digitalWrite(ledPin, open);
+    Serial.println("Open roof");
+    delay(5000);
     /*digitalWrite(X_DIR, LOW);
     step(X_STP, stps);*/
   }else{
-    digitalWrite(ledPin, 1);
-    Serial.println("Open roof");
-    delay(5000);
-    /*digitalWrite(X_DIR, HIGH);
-    step(X_STP, stps);*/
-    //ОТКРЫТЬ КРЫШУ
+    digitalWrite(ledPin, open);
   }
  close = digitalRead(closePin);
  if(close){
-   digitalWrite(ledPin, 0);
+   digitalWrite(ledPin, close);
+   Serial.println("Close roof");
+   delay(5000);
    /*digitalWrite(X_DIR, LOW);
    step(X_STP, stps);*/
   }else{
-   digitalWrite(ledPin, 1);
-   Serial.println("Close roof");
-   delay(5000);
-   /*digitalWrite(X_DIR, HIGH);
-   step(X_STP, stps);*/
-   // ЗАКРЫТЬ КРЫШУ
+   digitalWrite(ledPin, close);
  }
   
 }
